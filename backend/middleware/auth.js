@@ -2,8 +2,12 @@ import {validationResult, check }  from "express-validator";
 
 export const validateUserInput = () => {
     return [
-        check("username", "username is required").isString(),
-        check("email", "email is required").isString(),
+        check("username", "Username is required with at least 2 character").isString().isLength({
+          min: 2
+        }),
+        check("email", "Email is required").isString().isLength({
+          min:5
+        }),
         check("password", "Password with 6 or more characters required").isLength({
           min: 6,
         }),
